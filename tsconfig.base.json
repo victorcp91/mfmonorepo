@@ -16,6 +16,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"]
+    "customConditions": ["development"],
+    "rootDir": ".",
+    "paths": {
+      "dog/Module": ["apps/dog/src/remote-entry.ts"],
+      "jokes/Module": ["apps/jokes/src/remote-entry.ts"]
+    },
+    "baseUrl": "."
   }
 }

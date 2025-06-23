@@ -4,7 +4,13 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/start"
+      "path": "./apps/shell"
+    },
+    {
+      "path": "./apps/dog"
+    },
+    {
+      "path": "./apps/jokes"
     }
   ]
 }

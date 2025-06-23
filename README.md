@@ -1,101 +1,105 @@
-# Mfmonorepo
+# Module Federation Demo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A demonstration project showcasing **Module Federation** architecture using modern web technologies.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## 🚀 Tech Stack
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+- **[Nx Monorepo](https://nx.dev)** - Development tools for monorepo management
+- **[React 19](https://react.dev)** - UI library with latest features
+- **[Module Federation](https://module-federation.io)** - Microfrontend architecture
+- **[Rspack](https://rspack.dev)** - Fast Rust-based bundler
+- **[TanStack Query](https://tanstack.com/query)** - Server state management
+- **[Tailwind CSS](https://tailwindcss.com)** - Utility-first CSS framework
+- **[TypeScript](https://typescriptlang.org)** - Type-safe JavaScript
 
-## Run tasks
+## 🏗️ Architecture
 
-To run the dev server for your app, use:
+This project demonstrates a **microfrontend architecture** with:
 
-```sh
-npx nx serve start
+- **Shell App** (Host) - Main application shell with navigation
+- **Jokes Remote** - Consumes [Official Joke API](https://official-joke-api.appspot.com) to display random jokes
+- **Dog Remote** - Consumes [Dog CEO API](https://dog.ceo/api) to display random dog images
+
+Each microfrontend can be developed, deployed, and scaled independently while sharing common dependencies.
+
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm 8+
+
+### Installation
+
+```bash
+npm install
 ```
 
-To create a production bundle:
+### Running the Application
 
-```sh
-npx nx build start
+Start the complete application (shell + all remotes):
+
+```bash
+nx serve shell
 ```
 
-To see all available targets to run for a project, run:
+This will start:
 
-```sh
-npx nx show project start
+- **Shell app** at http://localhost:4200
+- **Dog remote** at http://localhost:4201
+- **Jokes remote** at http://localhost:4202
+
+### Individual Development
+
+Run each microfrontend independently:
+
+```bash
+# Shell app only
+nx serve shell
+
+# Dog images remote only
+nx serve dog
+
+# Jokes remote only
+nx serve jokes
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### Building
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Build all applications for production:
 
-## Add new projects
+```bash
+# Build shell (host)
+nx build shell
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+# Build remotes
+nx build dog
+nx build jokes
 
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
+# Build all at once
+nx run-many --target=build --projects=shell,dog,jokes
 ```
 
-To generate a new library, use:
+### Testing
 
-```sh
-npx nx g @nx/react:lib mylib
+Run tests for all projects:
+
+```bash
+nx run-many --target=test --all
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## 📱 Usage
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+1. Navigate to http://localhost:4200
+2. Explore the home page explaining the project
+3. Click **"Jokes"** to see random jokes from the API
+4. Click **"Dog Images"** to see random dog photos
+5. Each section is a separate microfrontend loaded dynamically
 
-## Set up CI!
+## 🎯 Key Features
 
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
-```
-
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- **Dynamic Module Loading** - Remotes are loaded on-demand
+- **Shared Dependencies** - React, TanStack Query shared between apps
+- **Independent Development** - Each team can work on separate microfrontends
+- **API Integration** - Real-world examples consuming external APIs
+- **Modern Tooling** - Latest React, TypeScript, and build tools

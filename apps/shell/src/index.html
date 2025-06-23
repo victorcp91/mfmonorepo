@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Module Federation Demo</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Module Federation Demo with Nx, React, and TanStack Query"
+    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <style>
+      /* Prevent FOUC (Flash of Unstyled Content) */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'Roboto', sans-serif;
+        background-color: #f9fafb;
+      }
+      #root {
+        min-height: 100vh;
+      }
+      /* Loading indicator for initial load */
+      .initial-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(to bottom right, #f8fafc, #e0f2fe);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="initial-loading">
+        <div style="text-align: center">
+          <div
+            style="
+              width: 40px;
+              height: 40px;
+              border: 4px solid #e2e8f0;
+              border-top: 4px solid #3b82f6;
+              border-radius: 50%;
+              animation: spin 1s linear infinite;
+              margin: 0 auto 16px;
+            "
+          ></div>
+          <p style="color: #64748b; margin: 0">
+            Loading Module Federation Demo...
+          </p>
+        </div>
+      </div>
+    </div>
+    <style>
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </body>
+</html>
